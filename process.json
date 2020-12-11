@@ -1,0 +1,7 @@
+{
+    "apps": [{
+        "name" : "survey-name-server",
+        "script" : "npm",
+        "args" : "run start-prod"
+    }]
+}
