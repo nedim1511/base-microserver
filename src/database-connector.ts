@@ -8,10 +8,10 @@ export default class DatabaseConnector {
             mongoose.set('useCreateIndex', true);
             mongoose
                 .connect(
-                    process.env.databaseUrl ? process.env.databaseUrl : ""
+                    process.env.databaseUrl ? process.env.databaseUrl : "mongodb+srv://admin:Iq83ilABPTZW!hk@cluster0-rpim1.mongodb.net/reports?retryWrites=true&w=majority"
                     )
                 .then((db) => {
-                   // console.log("Connected to database!");
+                   console.log("Connected to database!");
                     resolve(db);
                 })
                 .catch((error) => {
