@@ -1,13 +1,14 @@
 import express = require("express");
 import bodyParser from "body-parser";
 import container from "./injection-container";
-import { scopePerRequest } from 'awilix-express';
+import { scopePerRequest } from "awilix-express";
 import DatabaseConnector from "./database-connector";
 import logger from "./logger";
-import helmet from 'helmet';
-import contextService from 'request-context';
+import helmet from "helmet";
+import contextService from "request-context";
 import { Context } from "./context";
 import { TestController } from "./controllers/test-controller";
+import { WidgetController } from "./controllers/widget-controller";
 
 const app: express.Application = express();
 
@@ -15,7 +16,7 @@ app.use(helmet());
 
 new DatabaseConnector().connect();
 
-app.use(contextService.middleware('request'));
+app.use(contextService.middleware("request"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,17 +46,17 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  contextService.set('request:context', new Context(new Date()));
+  contextService.set("request:context", new Context(new Date()));
   next();
 });
 
 app.use(scopePerRequest(container));
 
 app.use("/api/test", new TestController().router);
+app.use("/api/widgets", new WidgetController().router);
 
 app.use((req, res, next) => {
-  if (!req.route)
-    return next(new Error('Url was not matched any route'));
+  if (!req.route) return next(new Error("Url was not matched any route"));
   next();
 });
 
@@ -66,7 +67,7 @@ app.use((req, res, next) => {
       res.status(201).json(res.locals.answer);
     }
   } else {
-    next(new Error('answer was not found in res.locals'));
+    next(new Error("answer was not found in res.locals"));
   }
 });
 app.use((error: any, req: any, res: any, next: any) => {

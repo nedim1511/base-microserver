@@ -1,5 +1,5 @@
 export class BaseDao {
-  protected async create(objectModel: any) {
+  public async create(objectModel: any) {
     try {
       objectModel.createdTime = new Date();
       const createdObject = await objectModel.save();
@@ -12,7 +12,7 @@ export class BaseDao {
     }
   }
 
-  protected async findOne(objectModel, parameters) {
+  public async findOne(objectModel, parameters) {
     try {
       return await objectModel.findOne(parameters);
     } catch(error) {
@@ -20,7 +20,7 @@ export class BaseDao {
     }
   }
 
-  protected async deleteOne(objectModel, parameters) {
+  public async deleteOne(objectModel, parameters) {
     try {
       return await objectModel.deleteOne(parameters);
     } catch(error) {
@@ -28,7 +28,7 @@ export class BaseDao {
     }
   }
 
-  protected async deleteMany(objectModel, parameters) {
+  public async deleteMany(objectModel, parameters) {
     try {
       return await objectModel.deleteMany(parameters);
     } catch(error) {
@@ -36,7 +36,7 @@ export class BaseDao {
     }
   }
 
-  protected async find(objectModel, parameters) {
+  public async find(objectModel, parameters) {
     try {
       return await objectModel.find(parameters);
     } catch(error) {
