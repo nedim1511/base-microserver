@@ -8,6 +8,8 @@ import helmet from "helmet";
 import contextService from "request-context";
 import { Context } from "./context";
 import { TestController } from "./controllers/test-controller";
+import { ReadyComponentController } from "./controllers/ready-component-controller";
+import { StyleController } from "./controllers/style-constroller";
 
 const app: express.Application = express();
 
@@ -52,6 +54,8 @@ app.use((req, res, next) => {
 app.use(scopePerRequest(container));
 
 app.use("/api/test", new TestController().router);
+app.use("/api/ready-components", new ReadyComponentController().router);
+app.use("/api/styles", new StyleController().router);
 
 app.use((req, res, next) => {
   if (!req.route) return next(new Error("Url was not matched any route"));
