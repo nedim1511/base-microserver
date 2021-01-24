@@ -11,4 +11,8 @@ export default class StyleService {
   async getStyles(params: any = {}) {
     return await this.styleDao.find(Style, params);
   }
+
+  async addStyle(model: any) {
+    return await this.styleDao.create(model);
+  }
 }

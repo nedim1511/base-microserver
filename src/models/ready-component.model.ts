@@ -4,6 +4,7 @@ import uniqueValidator from "mongoose-unique-validator";
 const readyComponent: Schema = new Schema({
   fieldsToShow: { type: [String] },
   key: { type: String, required: false },
+  description: { type: String, required: false },
   type: { type: Number, required: true },
   sortByField: { type: String, required: false },
   sortByDirection: { type: String, required: false },

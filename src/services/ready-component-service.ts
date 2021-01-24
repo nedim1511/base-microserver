@@ -11,4 +11,8 @@ export default class ReadyComponentService {
   async getReadyComponents(params: any = {}) {
     return await this.readyComponentDao.find(ReadyComponent, params);
   }
+
+  async addReadyComponent(model: any) {
+    return await this.readyComponentDao.create(model);
+  }
 }

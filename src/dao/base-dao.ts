@@ -1,7 +1,6 @@
 export class BaseDao {
   public async create(objectModel: any) {
     try {
-      objectModel.createdTime = new Date();
       const createdObject = await objectModel.save();
       return  {
           ...createdObject,
