@@ -12,6 +12,7 @@ import { ReadyComponentController } from "./controllers/ready-component-controll
 import { StyleController } from "./controllers/style-constroller";
 
 const app: express.Application = express();
+const upload = require("./services/image-upload-service");
 
 app.use(helmet());
 
@@ -56,6 +57,10 @@ app.use(scopePerRequest(container));
 app.use("/api/test", new TestController().router);
 app.use("/api/ready-components", new ReadyComponentController().router);
 app.use("/api/styles", new StyleController().router);
+
+app.post("/api/image-upload", upload.any(), (req, res) => {
+  res.send({ image: req.file });
+});
 
 app.use((req, res, next) => {
   if (!req.route) return next(new Error("Url was not matched any route"));
