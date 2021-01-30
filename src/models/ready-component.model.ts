@@ -13,7 +13,7 @@ const readyComponent: Schema = new Schema({
   filterByFieldAndValue: { type: [Schema.Types.Mixed], required: false },
   pictureField: { type: String, required: false },
   textField: { type: String, required: false },
-  picturesPerPage: { type: String, required: false },
+  picturesPerPage: { type: Number, required: false },
 });
 
 readyComponent.plugin(uniqueValidator);
