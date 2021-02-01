@@ -12,7 +12,15 @@ export default class StyleService {
     return await this.styleDao.find(Style, params);
   }
 
+  async getById(key: string) {
+    return await this.styleDao.findOne(Style, { key });
+  }
+
   async addStyle(model: any) {
     return await this.styleDao.create(model);
+  }
+
+  async editStyle(model: any) {
+    return await this.styleDao.findOneAndUpdate(model);
   }
 }
