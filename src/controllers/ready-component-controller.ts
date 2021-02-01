@@ -8,7 +8,9 @@ export class ReadyComponentController {
 
   constructor() {
     this.router.get("", responseHandler(this.getReadyComponents));
+    this.router.get("/:id", responseHandler(this.getById));
     this.router.post("", responseHandler(this.addReadyComponent));
+    this.router.put("", responseHandler(this.editReadyComponent));
   }
 
   async getReadyComponents(req, res, next) {
@@ -19,11 +21,31 @@ export class ReadyComponentController {
     return readyComponentResult;
   }
 
+  async getById(req, res, next) {
+    const readyComponentService: ReadyComponentService = req.container.resolve(
+      "readyComponentService"
+    );
+    const readyComponentResult = await readyComponentService.getById({
+      _id: req.params.id,
+    });
+    return readyComponentResult;
+  }
+
   async addReadyComponent(req, res, next) {
     const readyComponentService: ReadyComponentService = req.container.resolve(
       "readyComponentService"
     );
     const readyComponentResult = await readyComponentService.addReadyComponent(
+      new ReadyComponent(req.body)
+    );
+    return readyComponentResult._doc;
+  }
+
+  async editReadyComponent(req, res, next) {
+    const readyComponentService: ReadyComponentService = req.container.resolve(
+      "readyComponentService"
+    );
+    const readyComponentResult = await readyComponentService.editReadyComponent(
       new ReadyComponent(req.body)
     );
     return readyComponentResult._doc;

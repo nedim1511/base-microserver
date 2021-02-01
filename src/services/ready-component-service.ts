@@ -12,7 +12,16 @@ export default class ReadyComponentService {
     return await this.readyComponentDao.find(ReadyComponent, params);
   }
 
+  async getById(params: any = {}) {
+    console.log(params);
+    return await this.readyComponentDao.findOne(ReadyComponent, params);
+  }
+
   async addReadyComponent(model: any) {
     return await this.readyComponentDao.create(model);
+  }
+
+  async editReadyComponent(model: any) {
+    return await this.readyComponentDao.findOneAndUpdate(ReadyComponent, model);
   }
 }
