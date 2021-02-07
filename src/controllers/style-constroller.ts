@@ -7,16 +7,9 @@ export class StyleController {
   public router = express.Router();
 
   constructor() {
-    this.router.get("", responseHandler(this.getStyles));
     this.router.get("/:key", responseHandler(this.getById));
     this.router.post("", responseHandler(this.addStyle));
     this.router.put("", responseHandler(this.editStyle));
-  }
-
-  async getStyles(req, res, next) {
-    const styleService: StyleService = req.container.resolve("styleService");
-    const styleResult = await styleService.getStyles();
-    return styleResult;
   }
 
   async getById(req, res, next) {

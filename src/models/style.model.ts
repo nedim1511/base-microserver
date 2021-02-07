@@ -3,7 +3,7 @@ import uniqueValidator from "mongoose-unique-validator";
 
 const styleSchema: Schema = new Schema({
   key: { type: String, required: false },
-  style: { type: [Schema.Types.Mixed], required: false },
+  style: { type: Schema.Types.Mixed, required: false },
 });
 
 styleSchema.plugin(uniqueValidator);

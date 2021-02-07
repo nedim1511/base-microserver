@@ -8,10 +8,6 @@ export default class StyleService {
     this.styleDao = styleDao;
   }
 
-  async getStyles(params: any = {}) {
-    return await this.styleDao.find(Style, params);
-  }
-
   async getById(key: string) {
     return await this.styleDao.findOne(Style, { key });
   }
