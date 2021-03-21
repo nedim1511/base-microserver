@@ -13,7 +13,9 @@ const readyComponent: Schema = new Schema({
   filterByFieldAndValue: { type: [Schema.Types.Mixed], required: false },
   pictureField: { type: String, required: false },
   textField: { type: String, required: false },
+  groupBy: { type: String, required: false },
   picturesPerPage: { type: Number, required: false },
+  fieldFunctions: { type: [Schema.Types.Mixed], required: false },
 });
 
 readyComponent.plugin(uniqueValidator);
