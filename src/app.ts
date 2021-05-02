@@ -99,8 +99,8 @@ app.get("/api/get-file", async (req, res) => {
           "operation": "import/s3",
           "bucket": "app.items.uploads",
           "region": "eu-central-1",
-          "access_key_id": "AKIATWJPFQWWKSMVMBGX",
-          "secret_access_key": "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",
+          "access_key_id": process.env.AWS_KEY,
+          "secret_access_key": process.env.AWS_SECRET,
           "key": "my-file.docx"
         },
         "task-1": {
@@ -200,8 +200,8 @@ app.post("/api/html-upload", async (req, res) => {
           ],
           "bucket": "app.items.uploads",
           "region": "eu-central-1",
-          "access_key_id": "AKIATWJPFQWWKSMVMBGX",
-          "secret_access_key": "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"
+          "access_key_id": process.env.AWS_KEY,
+          "secret_access_key": process.env.AWS_SECRET
         }
       }
     });
