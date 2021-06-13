@@ -10,6 +10,7 @@ import { Context } from "./context";
 import { TestController } from "./controllers/test-controller";
 import { ReadyComponentController } from "./controllers/ready-component-controller";
 import { StyleController } from "./controllers/style-constroller";
+import {ReportDefinitionController} from "./controllers/report-definition-controller";
 
 const fileController = require('./controllers/file-controller.ts');
 
@@ -58,6 +59,7 @@ app.use(scopePerRequest(container));
 
 app.use("/api/test", new TestController().router);
 app.use("/api/ready-components", new ReadyComponentController().router);
+app.use("/api/report-definitions", new ReportDefinitionController().router);
 app.use("/api/styles", new StyleController().router);
 app.use("/api/file", fileController);
 
