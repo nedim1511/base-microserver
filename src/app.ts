@@ -67,6 +67,10 @@ app.post("/api/image-upload", upload.any(), (req, res) => {
   res.send({ image: req.file });
 });
 
+app.post("/api/file-upload", upload.any(), (req, res) => {
+  res.send({ image: req.file });
+});
+
 app.use((req, res, next) => {
   if (!req.route) return next(new Error("Url was not matched any route"));
   next();

@@ -11,12 +11,13 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
-// Just in case
+// Just in case//
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === 'application/msword' ||
+      file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
     cb(null, true);
   } else {
-    cb(new Error("Only PNG and JPG are allowed."), false);
+   cb(new Error("Only PNG, DOCX and JPG are allowed."), false);
   }
 };
 
