@@ -144,21 +144,12 @@ router.get("/get-file/:fileName", async (req, res) => {
                     "region": "eu-central-1",
                     "access_key_id": process.env.AWS_KEY,
                     "secret_access_key": process.env.AWS_SECRET,
-                    "key": req.params.fileName + ".docx"
-                },
-                "task-1": {
-                    "operation": "convert",
-                    "input_format": "docx",
-                    "output_format": "html",
-                    "engine": "office",
-                    "input": [
-                        "import-1"
-                    ]
+                    "key": req.params.fileName + ".html"
                 },
                 "export-1": {
                     "operation": "export/url",
                     "input": [
-                        "task-1"
+                        "import-1"
                     ],
                 }
             }
@@ -168,7 +159,8 @@ router.get("/get-file/:fileName", async (req, res) => {
         const exportTask: any = job.tasks.filter(
             task => task.operation === 'export/url' && task.status === 'finished'
         )[0];
-        if (exportTask) {
+        console.log(exportTask)
+     //   if (exportTask) {
             const file = exportTask.result.files[0];
 
             const writeStream = fs.createWriteStream(file.filename);
@@ -186,9 +178,9 @@ router.get("/get-file/:fileName", async (req, res) => {
             const path = require("path");
             const absolutePath = path.resolve('./' + req.params.fileName + '.html');
             res.status(200).sendFile(absolutePath);
-        } else {
-            res.send(200, 'emptyFile')
-        }
+      //  } else {
+      //      res.send(200, 'emptyFile')
+      //  }
 
     } catch (e) {
         res.status(400).json({status: 400, message: "Converting docx to html failed! " + e})
